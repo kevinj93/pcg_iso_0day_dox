@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PC Games iSO/0day/DOX by kevinj93</title>
+    <link rel="stylesheet" href="/static/style.css">
+
+    <script>
+    function toggleDetails(id, element) {
+
+        let existing = document.getElementById("details-" + id);
+
+        if (existing) {
+            existing.remove();
+            return;
+        }
+
+        fetch("/release/" + id)
+        .then(res => res.json())
+        .then(data => {
+
+            let details = document.createElement("div");
+            details.className = "card";
+            details.id = "details-" + id;
+
+            details.innerHTML = `
+                <div><strong>Year:</strong> ${data.year}</div>
+                <div><strong>Type:</strong> ${data.type}</div>
+                <div><strong>Size:</strong> ${data.size}</div>
+                <div>
+                    <span onclick="revealLink(${id}, this)" class="display-link">
+                        Display Link
+                    </span>
+                </div>
+                <div>Total downloads: ${data.downloads}</div>
+            `;
+
+            element.parentNode.insertAdjacentElement("afterend", details);
+        });
+    }
+
+    function revealLink(id, el){
+        fetch("/reveal/" + id, {method:"POST"})
+        .then(res => res.json())
+        .then(data => {
+            el.outerHTML = '<a href="'+data.link+'" target="_blank">'+data.link+'</a>';
+        });
+    }
+    </script>
+</head>
+<body>
+
+<h1>PC Games iSO/0day/DOX by kevinj93</h1>
+
+<div class="stats">
+    <p>Total Releases: {{ stats.total }}</p>
+    <p>Total Downloads: {{ stats.downloads }}</p>
+</div>
+
+<form method="POST" class="search-form">
+    <input type="text" name="query" placeholder="Search releases..." required>
+    <button type="submit">Search</button>
+</form>
+
+{% if message %}
+<p class="message">{{ message }}</p>
+{% endif %}
+
+{% if results %}
+<div class="results-list">
+    {% for r in results %}
+        <div class="release-item">
+            <span class="release-name"
+                  onclick="toggleDetails({{ r[0] }}, this)">
+                {{ r[1] }}
+            </span>
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+</body>
+</html>

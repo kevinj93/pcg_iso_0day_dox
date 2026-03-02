@@ -1,0 +1,132 @@
+body {
+    background: #111;
+    color: #eee;
+    font-family: Arial, sans-serif;
+    padding: 40px;
+    margin: 0;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.stats {
+    text-align: center;
+    margin-bottom: 30px;
+    opacity: 0.8;
+}
+
+.search-form {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+input {
+    padding: 10px;
+    width: 300px;
+    border-radius: 6px;
+    border: none;
+}
+
+button {
+    padding: 10px 16px;
+    margin-left: 8px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    background: #00aaff;
+    color: white;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #0088cc;
+}
+
+.message {
+    text-align: center;
+    color: orange;
+    margin-bottom: 20px;
+}
+
+/* GRID LAYOUT */
+
+.results {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* CARD */
+
+.card {
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    width: 380px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+}
+
+.title {
+    font-size: 16px;
+    margin-bottom: 12px;
+    word-break: break-word;
+}
+
+.meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-bottom: 10px;
+    opacity: 0.85;
+}
+
+.size {
+    margin-bottom: 12px;
+}
+
+.download {
+    margin-bottom: 10px;
+}
+
+.display-link {
+    cursor: pointer;
+    color: #00aaff;
+    font-weight: bold;
+}
+
+.display-link:hover {
+    text-decoration: underline;
+}
+
+.downloads {
+    font-size: 13px;
+    opacity: 0.7;
+}
+
+.results-list {
+    max-width: 800px;
+    margin: 30px auto;
+}
+
+.release-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #333;
+}
+
+.release-name {
+    cursor: pointer;
+    color: #00aaff;
+}
+
+.release-name:hover {
+    text-decoration: underline;
+}
